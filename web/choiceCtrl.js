@@ -57,7 +57,6 @@ app.controller('choiceCtrl', function(Calls, $scope, $http) {
             return c;
         });
         $scope.receivedCourses = result;
-        console.log(result);
     });
 
     $scope.submitClass = function(form) {
@@ -76,7 +75,6 @@ app.controller('choiceCtrl', function(Calls, $scope, $http) {
         var courseId = data['course'];
         data['course'] = BASE_URL + '/courses/' + data['course'] + '/';
         data['date'] = data['date'].toISOString().substring(0,10);
-        console.log(data.course);
         data.image = data.file.base64;
         delete data.file;
 
@@ -84,13 +82,15 @@ app.controller('choiceCtrl', function(Calls, $scope, $http) {
             if (lec.length !== 0) {
                 data.lecture = BASE_URL + '/lectures/' + lec[0].id + '/';
                 Calls.httpPost('notes/', data, function(newNote) {
-                    console.log('made!')
+                    alert('Notes successfully uploaded!')
+                    window.location = "/index.html";
                 });
             } else {
                 Calls.httpPost('lectures/', {date: data.date, course: data.course}, function(newLec) {
                   data.lecture = BASE_URL + '/lectures/' + newLec.id + '/';
                   Calls.httpPost('notes/', data, function(newNote) {
-                      console.log('made new lec too!')
+                      alert('Notes successfully uploaded!')
+                      window.location = "/index.html";
                   });
                 });
             }
@@ -121,7 +121,6 @@ app.controller('choiceCtrl', function(Calls, $scope, $http) {
       currNote.vote_count = currNote.vote_count + voteDelta;
       delete currNote.image;
       Calls.httpPatch('notes/' + currNote.id + '/', currNote, function(result) {
-        console.log(result);
       })
     };
 });

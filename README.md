@@ -42,7 +42,7 @@ Objects
     * votes
 * Lectures
     * list of notes
-    * classq
+    * class
 
 User Stories
 ============
@@ -61,3 +61,5 @@ I notice a trend, I can downvote the user.
 
 I'm a student reading notes. This person has consistently great notes, so I vote
 them up.
+
+I'm a OneNote user. I want to add the notes I'm reading to OneNote.

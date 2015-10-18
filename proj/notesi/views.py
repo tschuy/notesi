@@ -5,6 +5,7 @@ from proj.notesi.serializers import (
 from rest_framework.response import Response
 from proj.notesi.models import (Student, University, Campus,
                                      Course, Note, Lecture)
+from datetime import datetime as dt
 
 class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all().order_by('-user__date_joined')
@@ -69,6 +70,8 @@ class LectureViewSet(viewsets.ModelViewSet):
     def list(self, request):
         if request.GET.get('course', None):
             queryset = Lecture.objects.filter(course=request.GET.get('course', None))
+        elif request.GET.get('date', None):
+            queryset = Lecture.objects.filter(date=dt.strptime(request.GET.get('date', None), "%Y-%m-%d").date())
         else:
             queryset = Lecture.objects.all()
         serializer = LectureSerializer(queryset, many=True, context={'request': request})

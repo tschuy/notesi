@@ -74,7 +74,7 @@ app.controller('choiceCtrl', function(Calls, $scope, $http) {
         data['date'] = data['date'].toISOString().substring(0,10);
         console.log(data);
 
-        Calls.httpPost('lectures/', {date: data['date'], course: data['course']}, function(newLec) {
+        Calls.httpGet('lectures/?date=' + data['date'] + '/', function(lec) {
             console.log(newLec);
             data.lecture = "http://127.0.0.1:8000/v1/lectures/" + lewLec.id + '/';
             Calls.httpPost('notes/', data, function(newNote) {

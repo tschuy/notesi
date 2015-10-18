@@ -78,6 +78,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'proj.wsgi.application'
 
+STATICFILES_DIRS = ('web/',)
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
@@ -111,4 +112,4 @@ MEDIA_ROOT = '/opt/notesi/'
 CORS_ORIGIN_ALLOW_ALL = True
 
 STATIC_URL = '/'
-STATIC_ROOT = 'web/'
+# STATIC_ROOT = 'web/'

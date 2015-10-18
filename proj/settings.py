@@ -29,7 +29,8 @@ SECRET_KEY = '0jk)x=75)g8(n375^wgg@7ei5e9%w2$lr8=z!%3^aa--twnh3@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
+SITE_DOMAIN = 'dh.tschuy.com'
 
 
 # Application definition

@@ -1,10 +1,7 @@
 var app = angular.module('myApp', ['naif.base64']);
 
-// var BASE_URL = 'http://127.0.0.1:8000/v1'
-// var BASE_AUTH_URL = 'http://root:root@dh.tschuy.com/v1'
-
 var BASE_URL = 'http://127.0.0.1:8000/v1'
-var BASE_AUTH_URL = 'http://root:root@127.0.0.1:8000/v1'
+var BASE_AUTH_URL = 'http://root:root@dh.tschuy.com/v1'
 
 app.factory('Calls', function($http) {
     return {

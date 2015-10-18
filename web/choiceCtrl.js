@@ -1,9 +1,21 @@
 var app = angular.module('myApp', []);
-app.controller('choiceCtrl', function($scope) {
 
-
+app.factory('Calls', function($http) {
+    return {
+        httpRequest: function(param, callback) {
+            $http({
+                method: 'GET',
+                headers: {
+                  'Authorization': 'Basic ' + window.btoa('root' + ':' + 'root')
+                },
+                url: 'http://root:root@dh.tschuy.com/' + param
+            }).success(callback);
+        }
     }
-app.factory('calls', function(){
-	
+});
 
-});   
+app.controller('choiceCtrl', function(Calls, $scope, $http) {
+    Calls.httpRequest('courses/', function(result) {
+        $scope.receivedCourses = result;
+    });
+});

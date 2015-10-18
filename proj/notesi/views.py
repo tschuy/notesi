@@ -55,9 +55,9 @@ class NoteViewSet(viewsets.ModelViewSet):
 
     def list(self, request):
         if request.GET.get('lecture', None):
-            queryset = Note.objects.filter(lecture=request.GET.get('lecture', None))
+            queryset = Note.objects.filter(lecture=request.GET.get('lecture', None)).order_by('vote_count')
         else:
-            queryset = Note.objects.all()
+            queryset = Note.objects.all().order_by('vote_count')
         serializer = NoteSerializer(queryset, many=True, context={'request': request})
         return Response(serializer.data)
 

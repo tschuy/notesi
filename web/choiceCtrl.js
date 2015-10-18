@@ -8,7 +8,7 @@ app.factory('Calls', function($http) {
                 headers: {
                   'Authorization': 'Basic ' + window.btoa('root' + ':' + 'root')
                 },
-                url: 'http://root:root@localhost:8000/' + param
+                url: 'http://root:root@dh.tschuy.com/' + param
             }).success(callback);
         }
     }

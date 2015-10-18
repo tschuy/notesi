@@ -8,7 +8,7 @@ app.factory('Calls', function($http) {
                 headers: {
                   'Authorization': 'Basic ' + window.btoa('root' + ':' + 'root')
                 },
-                url: 'http://root:root@dh.tschuy.com/' + endpoint
+                url: 'http://root:root@dh.tschuy.com/v1/' + endpoint
             }).success(callback);
         },
         httpPatch: function(endpoint, data, callback) {
@@ -17,7 +17,7 @@ app.factory('Calls', function($http) {
                 headers: {
                   'Authorization': 'Basic ' + window.btoa('root' + ':' + 'root')
                 },
-                url: 'http://root:root@dh.tschuy.com/' + endpoint,
+                url: 'http://root:root@dh.tschuy.com/v1/' + endpoint,
                 data: data
             }).success(callback);
         }

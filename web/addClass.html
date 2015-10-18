@@ -9,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     <script src="bootstrap-3.3.5-dist/js/angular-base64-upload.js"></script>
     <script src="choiceCtrl.js"></script>
+    <link href="custom.css" rel="stylesheet">
 </head>
 <body ng-controller="choiceCtrl">
 	<div>
@@ -21,7 +22,7 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="index.html">Notesi</a>
+	      <a class="navbar-brand logo-link" href="index.html"><img class="logo" src="logo.png" alt="Notesi"/></a>
 	    </div>
 
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -29,13 +30,14 @@
 	        <li class="active"><a href="addClass.html">Add Class <span class="sr-only">(current)</span></a></li>
 	        <li><a href="uploadNotes.html">Upload Notes</a></li>
 	      </ul>
-	      <form class="navbar-form navbar-left" role="search">
-	        <div class="form-group">
-	          <input type="text" class="form-control" placeholder="Search">
-	        </div>
-	        <button type="submit" class="btn btn-default">Submit</button>
-	      </form>
+
 	      <ul class="nav navbar-nav navbar-right">
+          <form class="navbar-form navbar-left" role="search">
+  	        <div class="form-group">
+  	          <input type="text" class="form-control" placeholder="Search">
+  	        </div>
+  	        <button type="submit" class="btn btn-default">Submit</button>
+  	      </form>
 	        <li><a href="#">Logout</a></li>
 	      </ul>
 	    </div>

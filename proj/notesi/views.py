@@ -1,19 +1,35 @@
-from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
-from tutorial.quickstart.serializers import UserSerializer, GroupSerializer
+from proj.notesi.serializers import (
+    StudentSerializer, UniversitySerializer, CampusSerializer, CourseSerializer,
+    NoteSerializer, LectureSerializer)
+from proj.notesi.models import (Student, University, Campus,
+                                     Course, Note, Lecture)
+
+class StudentViewSet(viewsets.ModelViewSet):
+    queryset = Student.objects.all().order_by('-user__date_joined')
+    serializer_class = StudentSerializer
 
 
-class UserViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
-    queryset = User.objects.all().order_by('-date_joined')
-    serializer_class = UserSerializer
+class UniversityViewSet(viewsets.ModelViewSet):
+    queryset = University.objects.all()
+    serializer_class = UniversitySerializer
 
 
-class GroupViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows groups to be viewed or edited.
-    """
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
+class CampusViewSet(viewsets.ModelViewSet):
+    queryset = Campus.objects.all()
+    serializer_class = CampusSerializer
+
+
+class CourseViewSet(viewsets.ModelViewSet):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+
+
+class NoteViewSet(viewsets.ModelViewSet):
+    queryset = Note.objects.all()
+    serializer_class = NoteSerializer
+
+
+class LectureViewSet(viewsets.ModelViewSet):
+    queryset = Lecture.objects.all()
+    serializer_class = LectureSerializer

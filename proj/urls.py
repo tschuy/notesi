@@ -1,10 +1,14 @@
 from django.conf.urls import url, include
 from rest_framework import routers
-from tutorial.quickstart import views
+from proj.notesi import views
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
+router.register(r'students', views.StudentViewSet)
+router.register(r'universities', views.UniversityViewSet)
+router.register(r'campuses', views.CampusViewSet)
+router.register(r'courses', views.CourseViewSet)
+router.register(r'notes', views.NoteViewSet)
+router.register(r'lectures', views.LectureViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

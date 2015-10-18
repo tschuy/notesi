@@ -1,14 +1,40 @@
-from django.contrib.auth.models import User, Group
 from rest_framework import serializers
+from proj.notesi.models import (Student, University, Campus,
+                                Course, Note, Lecture)
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class StudentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = User
-        fields = ('url', 'username', 'email', 'groups')
+        model = Student
+        fields = ('url', 'username', 'email', 'courses')
 
 
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
+class UniversitySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Group
-        fields = ('url', 'name')
+        model = University
+        fields = ('name', 'bio', 'acronym')
+
+
+class CampusSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Campus
+        fields = ('name', 'university')
+
+
+class CourseSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Course
+        fields = ('professor', 'time', 'department', 'course_code', 'term',
+                  'university')
+
+
+class NoteSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Note
+        fields = ('student', 'vote_count', 'lecture')
+
+
+class LectureSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Lecture
+        fields = ('course',)

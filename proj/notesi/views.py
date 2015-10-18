@@ -55,7 +55,7 @@ class NoteViewSet(viewsets.ModelViewSet):
 
     def list(self, request):
         if request.GET.get('lecture', None):
-            queryset = Note.objects.filter(course=request.GET.get('lecture', None))
+            queryset = Note.objects.filter(lecture=request.GET.get('lecture', None))
         else:
             queryset = Note.objects.all()
         serializer = NoteSerializer(queryset, many=True, context={'request': request})

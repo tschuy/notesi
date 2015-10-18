@@ -6,7 +6,8 @@ app.factory('Calls', function($http) {
             $http({
                 method: 'GET',
                 headers: {
-                  'Authorization': 'Basic ' + window.btoa('root' + ':' + 'root')
+                  'Authorization': 'Basic ' + window.btoa('root' + ':' + 'root'),
+                  'Content-Type': 'application/json'
                 },
                 url: 'http://root:root@dh.tschuy.com/v1/' + endpoint
             }).success(callback);
@@ -15,7 +16,8 @@ app.factory('Calls', function($http) {
             $http({
                 method: 'PATCH',
                 headers: {
-                  'Authorization': 'Basic ' + window.btoa('root' + ':' + 'root')
+                  'Authorization': 'Basic ' + window.btoa('root' + ':' + 'root'),
+                  'Content-Type': 'application/json'
                 },
                 url: 'http://root:root@dh.tschuy.com/v1/' + endpoint,
                 data: data

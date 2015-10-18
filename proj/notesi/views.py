@@ -21,7 +21,7 @@ class UniversityViewSet(viewsets.ModelViewSet):
     serializer_class = UniversitySerializer
 
     def list(self, request):
-        queryset = University.objects.all().order_by('-user__date_joined')
+        queryset = University.objects.all()
         serializer = UniversitySerializer(queryset, many=True, context={'request': request})
         return Response(serializer.data)
 
@@ -31,7 +31,7 @@ class CampusViewSet(viewsets.ModelViewSet):
     serializer_class = CampusSerializer
 
     def list(self, request):
-        queryset = University.objects.all().order_by('-user__date_joined')
+        queryset = University.objects.all()
         serializer = UniversitySerializer(queryset, many=True, context={'request': request})
         return Response(serializer.data)
 
@@ -41,7 +41,7 @@ class CourseViewSet(viewsets.ModelViewSet):
     serializer_class = CourseSerializer
 
     def list(self, request):
-        queryset = Course.objects.all().order_by('-user__date_joined')
+        queryset = Course.objects.all()
         serializer = CourseSerializer(queryset, many=True, context={'request': request})
         return Response(serializer.data)
 

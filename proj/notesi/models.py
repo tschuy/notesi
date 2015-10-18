@@ -55,11 +55,11 @@ class Note(models.Model):
     image = models.ImageField()
 
     def __unicode__(self):
-        return "{} by {}".format(self.lecture, self.student.username)
+        return "{} by {}".format(self.lecture, self.student)
 
 
 class Lecture(models.Model):
     date = models.DateField()
     course = models.ForeignKey('Course')
     def __unicode__(self):
-        return "{} on {}".format(self.course, self.id)
+        return "{} on {}".format(self.course, self.date)

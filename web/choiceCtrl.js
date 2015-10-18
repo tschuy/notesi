@@ -47,7 +47,7 @@ app.controller('choiceCtrl', function(Calls, $scope, $http) {
 
     $scope.noteClick = function(note) {
       currNote = note;
-      document.getElementById('note-img').src = note.image;
+      document.getElementById('note-img').src = note.image.replace(':8000', '');
     };
 
     $scope.vote = function(voteDelta) {

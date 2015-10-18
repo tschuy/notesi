@@ -71,7 +71,7 @@ class LectureViewSet(viewsets.ModelViewSet):
         if request.GET.get('course', None):
             queryset = Lecture.objects.filter(course=request.GET.get('course', None))
         elif request.GET.get('date', None):
-            queryset = Lecture.objects.filter(date=dt.strptime(request.GET.get('date', None), "%Y-%m-%d").date())
+            queryset = Lecture.objects.filter(date=dt.strptime(request.GET.get('date', None), "%Y-%m-%d").date(), course=request.GET.get('course', None))
         else:
             queryset = Lecture.objects.all()
         serializer = LectureSerializer(queryset, many=True, context={'request': request})

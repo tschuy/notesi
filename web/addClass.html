@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html ng-app="myApp" lang="en-US">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="choiceCtrl.js"></script>
 </head>
-<body>
-	<div ng-app="app" ng-controller="sysCtrl">
+<body ng-controller="choiceCtrl">
+	<div>
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
@@ -40,58 +41,58 @@
 	</nav>
 
 	<div class="container well well-sm">
-		<form class="form-horizontal">
+		<form name="course" class="form-horizontal">
 		  <fieldset>
 		    <legend>Add Class</legend>
 		    <div class="form-group">
-		      <label for="university" class="col-lg-2 control-label">University</label>
-		      <div class="col-lg-10">
-		        <input type="text" class="form-control" id="inputUniversity" placeholder="Hogwarts">
-		      </div>
+		      <label for="university" class="col-lg-2 control-label" style="margin-right: 15px;">University</label>
+          <select style="width: 80%;" class="form-control" ng-model="newCourseForm.university" ng-options="university.id as university.name for university in receivedUniversities">
+              <option value="">Select University</option>
+          </select>
 		    </div>
 		    <div class="form-group">
 		      <label for="professor" class="col-lg-2 control-label">Professor</label>
 		      <div class="col-lg-10">
-		        <input type="text" class="form-control" id="inputprofessor" placeholder="Professor Dumbledore">
+		        <input ng-model="newCourseForm.professor" type="text" class="form-control" id="inputprofessor" placeholder="Professor Dumbledore">
 		      </div>
 		    </div>
 		    <div class="form-group">
 		      <label for="department" class="col-lg-2 control-label">Department</label>
 		      <div class="col-lg-10">
-		        <input type="department" class="form-control" id="inputDepartment" placeholder="DA">
+		        <input ng-model="newCourseForm.department" type="department" class="form-control" id="inputDepartment" placeholder="DA">
 		      </div>
 		    </div>
 		    <div class="form-group">
 		      <label for="courseID" class="col-lg-2 control-label">Course ID</label>
 		      <div class="col-lg-10">
-		        <input type="courseID" class="form-control" id="inputCourseID" placeholder="101">
+		        <input ng-model="newCourseForm.course_code" type="courseID" class="form-control" id="inputCourseID" placeholder="101">
 		      </div>
 		    </div>
 		    <div class="form-group">
-		      <label for="time" ng-model="time" class="col-lg-2 control-label">Start Date</label>
+		      <label for="time" ng-model="newCourseForm.time" class="col-lg-2 control-label">Time</label>
 		      <div class="col-lg-10">
-		        <input type="text" class="form-control" id="inputTime" placeholder="YY-MM-DD">
+		        <input ng-model="newCourseForm.time" type="time" class="form-control" id="inputTime">
 		      </div>
 		    </div>
 		    <div class="form-group">
 		      <label for="term" class="col-lg-2 control-label">Term</label>
 		      <div class="col-lg-10">
-		        <select class="form-control" id="select">
-		          <option>Fall</option>
-		          <option>Winter</option>
-		          <option>Spring</option>
-		          <option>Summer</option>
+		        <select ng-model="newCourseForm.term" class="form-control" id="select">
+		          <option value="FALL">Fall</option>
+		          <option value="WINTER">Winter</option>
+		          <option value="SPRING">Spring</option>
+		          <option value="SUMMER">Summer</option>
 		        </select>
 		      </div>
 		    </div>
 		    <div class="form-group">
 		      <div class="col-lg-10 col-lg-offset-2">
 		        <button type="reset" class="btn btn-default">Cancel</button>
-		        <button type="submit" class="btn btn-primary" ng-click="submitTime">Submit</button>
+		        <button type="button" class="btn btn-primary" ng-click="submitUni()">Submit</button>
 		      </div>
 		    </div>
 		  </fieldset>
 		</form>
 	</div>
 </body>
-</html>	
+</html>

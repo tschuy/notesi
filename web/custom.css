@@ -1,0 +1,21 @@
+a {
+  cursor: pointer;
+}
+
+.class-panel {
+  height: 300px;
+}
+
+body {  font-family: 'Lato', sans-serif; }
+
+h1 h2 h3 h4 h5 h6 {
+  font-family: 'Lato', sans-serif;
+}
+
+.navbar-brand {
+  font-weight: 700;
+}
+
+.navbar-nav {
+  font-weight: 200;
+}

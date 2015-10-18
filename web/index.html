@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="custom.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     <script src="choiceCtrl.js"></script>
 </head>
@@ -23,7 +24,7 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="addClass.html">Add Class <span class="sr-only">(current)</span></a></li>
+        <li><a href="addClass.html">Add Class <span class="sr-only">(current)</span></a></li>
         <li><a href="uploadNotes.html">Upload Notes</a></li>
       </ul>
       <form class="navbar-form navbar-left" role="search">
@@ -39,38 +40,38 @@
   </div>
 </nav>
 	<div class="container well well-sm">
-		<div class="panel panel-primary col-md-4" style="height: 150px;">
+		<div class="panel panel-primary col-md-4 class-panel" style="border-top-right-radius:0; border-bottom-right-radius:0;">
 		  <div class="panel-heading">
 		    <h3 class="panel-title">Classes</h3>
 		  </div>
 		  <div class="panel-body">
         <div class="item-row">
-            <ul><li ng-repeat="course in receivedCourses" ng-click="courseClick(course)">{{course.department}} {{course.course_code}}</li></ul>
+            <ul><li ng-repeat="course in receivedCourses" ng-click="courseClick(course)"><a>{{course.department}} {{course.course_code}}</a></li></ul>
         </div>
 		  </div>
 		</div>
-		<div class="panel panel-primary col-md-4" style="height: 150px;">
+		<div class="panel panel-primary col-md-4 class-panel" style="border-radius: 0px;">
 		  <div class="panel-heading">
 		    <h3 class="panel-title">Lectures</h3>
 		  </div>
 		  <div class="panel-body">
         <div class="item-row">
-            <ul><li ng-repeat="lecture in receivedLectures" ng-click="lectureClick(lecture)">{{lecture.date}}</li></ul>
+            <ul><li ng-repeat="lecture in receivedLectures" ng-click="lectureClick(lecture)"><a>{{lecture.date}}</a></li></ul>
         </div>
 		  </div>
 		</div>
-		<div class="panel panel-primary col-md-4" style="height: 150px;">
+		<div class="panel panel-primary col-md-4 class-panel" style="border-top-left-radius:0; border-bottom-left-radius:0;">
 		  <div class="panel-heading">
 		    <h3 class="panel-title">Notes</h3>
 		  </div>
 		  <div class="panel-body">
         <div class="item-row">
-            <ul><li ng-repeat="note in receivedNotes" ng-click="noteClick(note)">Points: {{note.vote_count}}</li></ul>
+            <ul><li ng-repeat="note in receivedNotes" ng-click="noteClick(note)"><a>Points: {{note.vote_count}}</a></li></ul>
         </div>
 		  </div>
 		</div>
 	</div>
-	<div class="container well well-sm">
+	<div class="container well well-sm" id="note-panel" ng-show="hasNote">
 		<div class="panel panel-primary col-md-10">
 		  <div class="panel-heading">
 		    <h3 class="panel-title">Notes</h3>

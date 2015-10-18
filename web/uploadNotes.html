@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html ng-app="myApp" lang="en-US">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="custom.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="choiceCtrl.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,200,700' rel='stylesheet' type='text/css'>
 </head>
-<body>
+<body ng-controller="choiceCtrl">
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
@@ -22,8 +25,8 @@
 
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="addClass.html">Add Class <span class="sr-only">(current)</span></a></li>
-	        <li><a href="uploadNotes.html">Upload Notes</a></li>
+	        <li><a href="addClass.html">Add Class <span class="sr-only">(current)</span></a></li>
+	        <li class="active"><a href="uploadNotes.html">Upload Notes</a></li>
 	      </ul>
 	      <form class="navbar-form navbar-left" role="search">
 	        <div class="form-group">
@@ -38,63 +41,39 @@
 	  </div>
 	</nav>
 
-	<div class="container well well-sm">
-		<form class="form-horizontal">
+  	<div class="container" ng-show="successfulUni">
+        <span class="label label-success">University successfully created!</span>
+    </div>
+
+  	<div class="container well well-sm">
+		<form class="form-horizontal" >
 		  <fieldset>
 		    <legend>Upload Notes</legend>
 		    <div class="form-group">
-		      <label for="course" class="col-lg-2 control-label">Course</label>
-		      <div class="col-lg-10">
-		        <select class="form-control" id="select">
-		          <option>MTH 231</option>
-		          <option>HST 103</option>
-		          <option>CS 344</option>
-		          <option>BIO 201</option>
-		        </select>
-		      </div>
-		    </div>
-		     <div class="form-group">
-		      <label for="professor" class="col-lg-2 control-label">Professor</label>
-		      <div class="col-lg-10">
-		        <input type="text" class="form-control" id="inputprofessor" placeholder="Professor Dumbledore">
-		      </div>
-		    </div>
-		    <div class="form-group">
-		      <label for="time" class="col-lg-2 control-label">Start Date</label>
-		      <div class="col-lg-10">
-		        <input type="text" class="form-control" id="inputTime" placeholder="YY-MM-DD">
-		      </div>
-		    </div>
-		    <div class="form-group">
-		      <label for="term" class="col-lg-2 control-label">Term</label>
-		      <div class="col-lg-10">
-		        <select class="form-control" id="select">
-		          <option>Fall</option>
-		          <option>Winter</option>
-		          <option>Spring</option>
-		          <option>Summer</option>
-		        </select>
-		      </div>
-		    </div>
+  		      <label for="course" class="col-lg-2 control-label" style="margin-right: 15px;">Course</label>
+            <select style="width: 80%;" class="form-control" ng-model="newNoteForm.course" ng-options="course.id as course.name for course in receivedCourses">
+                <option value="">Select Course</option>
+            </select>
+  		    </div>
 		    <div class="form-group">
 		      <label for="lectDate" class="col-lg-2 control-label">Lecture Date</label>
 		      <div class="col-lg-10">
-		        <input type="text" class="form-control" id="inputLectDate" placeholder="YY-MM-DD">
+		        <input type="date" class="form-control" ng-model="newNoteForm.date" id="inputLectDate">
 		      </div>
 		    </div>
 		    <div class="form-group">
 			    <div class="fileupload fileupload-new col-lg-10 col-lg-offset-2" data-provides="fileupload">
 					<span class="btn btn-primary btn-file"><span class="fileupload-new">Select file</span>
-					<span class="fileupload-exists">Change</span>         
-				  		<input type="file" /></span>
+					<span class="fileupload-exists">Change</span>
+				  		<input type="file" ng-model="newNoteForm.file" /></span>
 					<span class="fileupload-preview"></span>
 					<a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
 				</div>
-			</div>	
+			</div>
 		    <div class="form-group">
 		      <div class="col-lg-10 col-lg-offset-2">
 		        <button type="reset" class="btn btn-default">Cancel</button>
-		        <button type="submit" class="btn btn-primary">Submit</button>
+		        <button type="submit" class="btn btn-primary" ng-click="submitNote()">Submit</button>
 		      </div>
 		    </div>
 		  </fieldset>

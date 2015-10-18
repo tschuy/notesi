@@ -1,6 +1,9 @@
 from django.conf.urls import url, include
 from rest_framework import routers
 from proj.notesi import views
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 router = routers.DefaultRouter()
 router.register(r'students', views.StudentViewSet)
@@ -15,4 +18,4 @@ router.register(r'lectures', views.LectureViewSet)
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
-]
+]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

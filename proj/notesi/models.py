@@ -51,6 +51,7 @@ class Note(models.Model):
     student = models.ForeignKey('Student')
     vote_count = models.IntegerField()
     lecture = models.ForeignKey('Lecture')
+    #image_url = models.URLField()
     image = models.ImageField()
 
     def __unicode__(self):
@@ -58,6 +59,7 @@ class Note(models.Model):
 
 
 class Lecture(models.Model):
+    date = models.DateField()
     course = models.ForeignKey('Course')
     def __unicode__(self):
         return "{} on {}".format(self.course, self.id)

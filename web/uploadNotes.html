@@ -8,6 +8,7 @@
     <link href="custom.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     <script src="choiceCtrl.js"></script>
+    <script src="bootstrap-3.3.5-dist/js/angular-base64-upload.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Lato:400,200,700' rel='stylesheet' type='text/css'>
 </head>
 <body ng-controller="choiceCtrl">
@@ -65,7 +66,7 @@
 			    <div class="fileupload fileupload-new col-lg-10 col-lg-offset-2" data-provides="fileupload">
 					<span class="btn btn-primary btn-file"><span class="fileupload-new">Select file</span>
 					<span class="fileupload-exists">Change</span>
-				  		<input type="file" ng-model="newNoteForm.file" /></span>
+          <input type='file' ng-model='newNoteForm.file' base-sixty-four-input>
 					<span class="fileupload-preview"></span>
 					<a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
 				</div>

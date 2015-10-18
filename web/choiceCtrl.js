@@ -1,4 +1,10 @@
-var app = angular.module('myApp', []);
+var app = angular.module('myApp', ['naif.base64']);
+
+// var BASE_URL = 'http://127.0.0.1:8000/v1'
+// var BASE_AUTH_URL = 'http://root:root@dh.tschuy.com/v1'
+
+var BASE_URL = 'http://127.0.0.1:8000/v1'
+var BASE_AUTH_URL = 'http://root:root@127.0.0.1:8000/v1'
 
 app.factory('Calls', function($http) {
     return {
@@ -9,7 +15,7 @@ app.factory('Calls', function($http) {
                   'Authorization': 'Basic ' + window.btoa('root' + ':' + 'root'),
                   'Content-Type': 'application/json'
                 },
-                url: 'http://root:root@dh.tschuy.com/v1/' + endpoint
+                url: BASE_AUTH_URL + '/' + endpoint
             }).success(callback);
         },
         httpPatch: function(endpoint, data, callback) {
@@ -19,7 +25,7 @@ app.factory('Calls', function($http) {
                   'Authorization': 'Basic ' + window.btoa('root' + ':' + 'root'),
                   'Content-Type': 'application/json'
                 },
-                url: 'http://root:root@dh.tschuy.com/v1/' + endpoint,
+                url: BASE_AUTH_URL + '/' + endpoint,
                 data: data
             }).success(callback);
         },
@@ -30,7 +36,7 @@ app.factory('Calls', function($http) {
                   'Authorization': 'Basic ' + window.btoa('root' + ':' + 'root'),
                   'Content-Type': 'application/json'
                 },
-                url: 'http://root:root@dh.tschuy.com/v1/' + endpoint,
+                url: BASE_AUTH_URL + '/' + endpoint,
                 data: data
             }).success(callback);
         }
@@ -59,7 +65,7 @@ app.controller('choiceCtrl', function(Calls, $scope, $http) {
 
     $scope.submitClass = function(form) {
         var data = $scope.newCourseForm;
-        data['university'] = "http://127.0.0.1:8000/v1/universities/" + data['university'] + '/';
+        data['university'] = BASE_URL + '/universities/' + data['university'] + '/';
         dateStr = data['time'].toString();
         data['time'] = dateStr.substring(dateStr.indexOf(':') - 2, dateStr.lastIndexOf(':') + 3);
         Calls.httpPost('courses/', data, function(result) {
@@ -70,16 +76,27 @@ app.controller('choiceCtrl', function(Calls, $scope, $http) {
 
     $scope.submitNote = function(form) {
         var data = $scope.newNoteForm;
-        data['course'] = "http://127.0.0.1:8000/v1/courses/" + data['course'] + '/';
+        var courseId = data['course'];
+        data['course'] = BASE_URL + '/courses/' + data['course'] + '/';
         data['date'] = data['date'].toISOString().substring(0,10);
-        console.log(data);
+        console.log(data.course);
+        data.image = data.file.base64;
+        delete data.file;
 
-        Calls.httpGet('lectures/?date=' + data['date'] + '/', function(lec) {
-            console.log(newLec);
-            data.lecture = "http://127.0.0.1:8000/v1/lectures/" + lewLec.id + '/';
-            Calls.httpPost('notes/', data, function(newNote) {
-                window.location = "/uploadNotes.html";
-            });
+        Calls.httpGet('lectures/?date=' + data['date'] + '&course=' + courseId, function(lec) {
+            if (lec.length !== 0) {
+                data.lecture = BASE_URL + '/lectures/' + lec[0].id + '/';
+                Calls.httpPost('notes/', data, function(newNote) {
+                    console.log('made!')
+                });
+            } else {
+                Calls.httpPost('lectures/', {date: data.date, course: data.course}, function(newLec) {
+                  data.lecture = BASE_URL + '/lectures/' + newLec.id + '/';
+                  Calls.httpPost('notes/', data, function(newNote) {
+                      console.log('made new lec too!')
+                  });
+                });
+            }
         });
     }
 

@@ -49,7 +49,7 @@ class Course(models.Model):
 
 class Note(models.Model):
     student = models.ForeignKey('Student') # determined
-    vote_count = models.IntegerField() # determined
+    vote_count = models.IntegerField(default=0) # determined
     lecture = models.ForeignKey('Lecture') # gotten from date
     #image_url = models.URLField()
     image = models.ImageField() #uploaded

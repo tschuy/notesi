@@ -41,7 +41,10 @@ class CourseViewSet(viewsets.ModelViewSet):
     serializer_class = CourseSerializer
 
     def list(self, request):
-        queryset = Course.objects.all()
+        if request.GET.get('student', None):
+            queryset = Course.objects.filter(course=request.GET.get('student', None))
+        else:
+            queryset = Course.objects.all()
         serializer = CourseSerializer(queryset, many=True, context={'request': request})
         return Response(serializer.data)
 

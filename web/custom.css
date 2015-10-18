@@ -23,3 +23,9 @@ a {
   height: 45px;
   width: auto;
 }
+
+@media (max-width: 600px) {
+  .class-panel {
+    height: auto;
+  }
+}
